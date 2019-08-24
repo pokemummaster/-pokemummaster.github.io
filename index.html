@@ -92,6 +92,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <pre><code>##JDK 和 JRE 有什么区别？
+
 JDK：Java Development Kit 的简称，java 开发工具包，提供了 java 的开发环境和运行环境。
 
 JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运行提供了所需环境。
@@ -100,9 +101,11 @@ JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运�
 
 
 ## == 和 equals 的区别是什么？
+
 == 对于基本类型来说是值比较，对于引用类型来说是比较的是引用；而 equals 默认情况下是引用比较，只是很多类重新了 equals 方法，比如 String、Integer 等把它变成了值比较，所以一般情况下 equals 比较的是值是否相等。    
 
 ## 两个对象的 hashCode()相同，则 equals()也一定为 true，对吗？
+
 不对，两个对象的 hashCode()相同，equals()不一定 true。
 个人理解：其实就是equals没有被重写的话 其实是继承自Object类的==，也就是比较引用，所以一般情况下equals返回相等的话,就表明是引用相同，所以两者hashcode值也是一样的，
 但是反过来，hashcode值一样也不代表equals相同，因为简单的举例来说 4%3=1%3 结果相同，但是 4和1 不相等，算hashcode也可以是理解与用一种算法来算出某个值
@@ -120,16 +123,410 @@ final 修饰的变量叫常量，常量必须初始化，初始化之后值就�
 
 
 ## java 中的 Math.round(-1.5) 等于多少？
+
 其实roud函数就是四舍五入，但是在复数的四舍五入是往大的去的，所以-1.5四舍五入之后是-1，那么答案也就是-1
 
 
 ##String 属于基础的数据类型吗？
+
 String 不属于基础类型，基础类型有 8 种：byte、boolean、char、short、int、float、long、double，而 String 属于对象。
-所以String在用==时 是比较的引用</code></pre>
+所以String在用==时 是比较的引用
+
+
+
+##java 中操作字符串都有哪些类？它们之间有什么区别？
+
+String 和 StringBuffer、StringBuilder 的区别在于 String 声明的是不可变的对象，每次操作都会生成新的 String 对象，然后将指针指向新的 String 对象，而 StringBuffer、StringBuilder 可以在原有对象的基础上进行操作，所以在经常改变字符串内容的情况下最好不要使用 String。
+
+
+StringBuffer 和 StringBuilder 最大的区别在于，StringBuffer 是线程安全的，而 StringBuilder 是非线程安全的，但 StringBuilder 的性能却高于 StringBuffer，所以在单线程环境下推荐使用 StringBuilder，多线程环境下推荐使用 StringBuffer。
+
+个人总结：
+
+对不经常变化的字符串使用String即可。经常变化、正在拼装的字符串不用String。若是全局变量，可能多线程引用，使用StringBuffer；若是局部变量，单线程使用，推荐StringBuilder。
+
+他人的回答：
+
+如果你写了一个全局范围的StringBuffer和StringBuilder...两个线程不能同时修改StringBuffer中的内容，而能同时修改StringBuilder中的东西
+
+##String str=&quot;i&quot;与 String str=new String(&quot;i&quot;)一样吗？
+不一样，因为内存的分配方式不一样。String str=&quot;i&quot;的方式，java 虚拟机会将其分配到常量池中；而 String str=new String(&quot;i&quot;) 则会被分到堆内存中。
+
+
+##如何将字符串反转？
+
+使用 StringBuilder 或者 stringBuffer 的 reverse() 方法。
+反转=顺序倒过来
+
+##String 类的常用方法都有那些？
+
+
+indexOf()：返回指定字符的索引。
+
+charAt()：返回指定索引处的字符。
+
+replace()：字符串替换。
+
+trim()：去除字符串两端空白。
+
+split()：分割字符串，返回一个分割后的字符串数组。
+
+getBytes()：返回字符串的 byte 类型数组。
+
+length()：返回字符串长度。
+
+toLowerCase()：将字符串转成小写字母。
+
+toUpperCase()：将字符串转成大写字符。
+
+substring()：截取字符串。
+
+equals()：字符串比较。
+
+
+
+# 抽象类必须要有抽象方法吗？
+
+普通类不能包含抽象方法，抽象类可以包含抽象方法。
+抽象类不能直接实例化，普通类可以直接实例化。
+
+抽象类特点：
+
+1. 抽象类不能被实例化(初学者很容易犯的错)，如果被实例化，就会报错，编译无法通过。只有抽象类的非抽象子类可以创建对象。
+
+2. 抽象类中不一定包含抽象方法，但是有抽象方法的类必定是抽象类。
+
+3. 抽象类中的抽象方法只是声明，不包含方法体，就是不给出方法的具体实现也就是方法的具体功能。
+
+4. 构造方法，类方法（用 static 修饰的方法）不能声明为抽象方法。
+
+5. 抽象类的子类必须给出抽象类中的抽象方法的具体实现，除非该子类也是抽象类。
+
+与接口区别：
+抽象类大体上和接口差不多，但是有一丝却别
+
+（1）抽象类可以有构造方法，接口中不能有构造方法。
+
+（2）抽象类中可以有普通成员变量，接口中没有普通成员变量
+
+（3）抽象类中可以包含静态方法，接口中不能包含静态方法
+
+（4） 一个类可以实现多个接口，但只能继承一个抽象类。
+
+（5）接口可以被多重实现，抽象类只能被单一继承
+
+（6）如果抽象类实现接口，则可以把接口中方法映射到抽象类中作为抽象方法而不必实现，而在抽象类的子类中实现接口中方法
+
+
+ #抽象类能使用 final 修饰吗？
+ 不能，定义抽象类就是让其他类继承的，如果定义为 final 该类就不能被继承，这样彼此就会产生矛盾，所以 final 不能修饰抽象类
+
+
+
+##接口和抽象类有什么区别？
+
+实现：抽象类的子类使用 extends 来继承；接口必须使用 implements 来实现接口。
+
+构造函数：抽象类可以有构造函数；接口不能有。
+
+main 方法：抽象类可以有 main 方法，并且我们能运行它；接口不能有 main 方法。
+
+实现数量：类可以实现很多个接口；但是只能继承一个抽象类。
+
+访问修饰符：接口中的方法默认使用 public 修饰；抽象类中的方法可以是任意访问修饰符。
+
+
+## java 中 IO 流分为几种？
+
+
+按功能来分：输入流（input）、输出流（output）。
+
+
+按类型来分：字节流和字符流。
+
+
+字节流和字符流的区别是：字节流按 8 位传输以字节为单位输入输出数据，字符流按 16 位传输以字符为单位输入输出数据。
+
+
+##BIO、NIO、AIO 有什么区别？
+
+BIO：Block IO 同步阻塞式 IO，就是我们平常使用的传统 IO，它的特点是模式简单使用方便，并发处理能力低。
+
+NIO：New IO 同步非阻塞 IO，是传统 IO 的升级，客户端和服务器端通过 Channel（通道）通讯，实现了多路复用。
+
+AIO：Asynchronous IO 是 NIO 的升级，也叫 NIO2，实现了异步非堵塞 IO ，异步 IO 的操作基于事件和回调机制。
+
+
+关于BIO NIO形象比喻
+以前的流总是堵塞的，一个线程只要对它进行操作，其它操作就会被堵塞，也就相当于水管没有阀门，你伸手接水的时候，不管水到了没有，你就都只能耗在接水（流）上。</code></pre><p>nio的Channel的加入，相当于增加了水龙头（有阀门），虽然一个时刻也只能接一个水管的水，但依赖轮换策略，在水量不大的时候，各个水管里流出来的水，都可以得到妥</p>
+<p>善接纳，这个关键之处就是增加了一个接水工，也就是Selector，他负责协调，也就是看哪根水管有水了的话，在当前水管的水接到一定程度的时候，就切换一下：临时关上当</p>
+<p>前水龙头，试着打开另一个水龙头（看看有没有水）。</p>
+<p>当其他人需要用水的时候，不是直接去接水，而是事前提了一个水桶给接水工，这个水桶就是Buffer。也就是，其他人虽然也可能要等，但不会在现场等，而是回家等，可以做</p>
+<p>其它事去，水接满了，接水工会通知他们。</p>
+<pre><code>NIO的大致流程为：
+
+输入文件-&gt;缓冲区-&gt;通道-&gt;缓冲区-&gt;程序处理数据-&gt;缓冲区-&gt;通道-&gt;缓冲区-&gt;输出文件。
+
+I/O的大致流程为：
+
+输入文件-&gt;流-&gt;程序处理数据-&gt;流-&gt;输出文件。
+
+##Files的常用方法都有哪些？
+
+
+Files.exists()：检测文件路径是否存在。
+
+Files.createFile()：创建文件。
+
+Files.createDirectory()：创建文件夹。
+
+Files.delete()：删除一个文件或目录。
+
+Files.copy()：复制文件。
+
+Files.move()：移动文件。
+
+Files.size()：查看文件个数。
+
+Files.read()：读取文件。
+
+Files.write()：写入文件。
+
+##java 容器都有哪些？
+
+
+常用容器的图录：
+List Set Queue
+
+## Collection 和 Collections 有什么区别？
+
+java.util.Collection 是一个集合接口（集合类的一个顶级接口）。它提供了对集合对象进行基本操作的通用接口方法。Collection接口在Java 类库中有很多具体的实现。Collection接口的意义是为各种具体的集合提供了最大化的统一操作方式，其直接继承接口有List与Set。
+
+Collections则是集合类的一个工具类/帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。
+
+
+
+##List、Set、Map 之间的区别是什么？
+
+![123](‪C:\Users\86180\Desktop\640.jpg)
+List:重复有序
+Set：不重复无序
+
+
+##HashMap 和 Hashtable 有什么区别？
+
+hashMap去掉了HashTable 的contains方法，但是加上了containsValue（）和containsKey（）方法。
+
+hashTable同步的，而HashMap是非同步的，效率上逼hashTable要高。
+
+hashMap允许空键值，而hashTable不允许。
+
+
+
+##如何决定使用 HashMap 还是 TreeMap？
+
+对于在Map中插入、删除和定位元素这类操作，HashMap是最好的选择。然而，假如你需要对一个有序的key集合进行遍历，TreeMap是更好的选择。基于你的collection的大小，也许向HashMap中添加元素会更快，将map换为TreeMap进行有序key的遍历。
+
+##说一下 HashMap 的实现原理？
+
+
+HashMap概述： HashMap是基于哈希表的Map接口的非同步实现。此实现提供所有可选的映射操作，并允许使用null值和null键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。 
+
+HashMap的数据结构： 在java编程语言中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap也不例外。HashMap实际上是一个“链表散列”的数据结构，即数组和链表的结合体。
+
+当我们往Hashmap中put元素时,首先根据key的hashcode重新计算hash值,根绝hash值得到这个元素在数组中的位置(下标),如果该数组在该位置上已经存放了其他元素,那么在这个位置上的元素将以链表的形式存放,新加入的放在链头,最先加入的放入链尾.如果数组中该位置没有元素,就直接将该元素放到数组的该位置上。
+
+需要注意Jdk 1.8中对HashMap的实现做了优化,当链表中的节点数据超过八个之后,该链表会转为红黑树来提高查询效率,从原来的O(n)到O(logn)
+
+
+##说一下 HashSet 的实现原理？
+
+
+HashSet底层由HashMap实现
+
+HashSet的值存放于HashMap的key上
+
+HashMap的value统一为PRESENT
+
+
+##ArrayList 和 LinkedList 的区别是什么？
+
+最明显的区别是 ArrrayList底层的数据结构是数组，支持随机访问，而 LinkedList 的底层数据结构是双向循环链表，不支持随机访问。使用下标访问一个元素，ArrayList 的时间复杂度是 O(1)，而 LinkedList 是 O(n)。
+ArrayList:存放Object的长度可变数组
+LinkedList:结构与数组不同，是圈圈型的链表
+
+
+##如何实现数组和 List 之间的转换？
+
+List转换成为数组：调用ArrayList的toArray方法。
+
+数组转换成为List：调用Arrays的asList方法。
+
+##. ArrayList 和 Vector 的区别是什么？
+
+
+Vector是同步的，而ArrayList不是。然而，如果你寻求在迭代的时候对列表进行改变，你应该使用CopyOnWriteArrayList。 
+
+ArrayList比Vector快，它因为有同步，不会过载。 
+
+ArrayList更加通用，因为我们可以使用Collections工具类轻易地获取同步列表和只读列表。
+
+## Array 和 ArrayList 有何区别？
+
+
+Array可以容纳基本类型和对象，而ArrayList只能容纳对象。 
+
+Array是指定大小的，而ArrayList大小是固定的。 
+
+Array没有提供ArrayList那么多功能，比如addAll、removeAll和iterator等。
+
+
+##在 Queue 中 poll()和 remove()有什么区别？
+
+poll() 和 remove() 都是从队列中取出一个元素，但是 poll() 在获取元素失败的时候会返回空，但是 remove() 失败的时候会抛出异常。
+
+
+##哪些集合类是线程安全的？
+
+vector：就比arraylist多了个同步化机制（线程安全），因为效率较低，现在已经不太建议使用。在web应用中，特别是前台页面，往往效率（页面响应速度）是优先考虑的。
+
+statck：堆栈类，先进后出。
+
+hashtable：就比hashmap多了个线程安全。
+
+enumeration：枚举，相当于迭代器。
+
+
+##迭代器 Iterator 是什么？
+
+迭代器是一种设计模式，它是一个对象，它可以遍历并选择序列中的对象，而开发人员不需要了解该序列的底层结构。迭代器通常被称为“轻量级”对象，因为创建它的代价小。
+
+
+
+## Iterator 怎么使用？有什么特点？
+    Set&lt;String&gt; all = Set.of(&quot;Hello&quot;, &quot;world&quot;,&quot;sina&quot;,&quot;sohu&quot;);
+    Iterator&lt;String&gt; iter = all.iterator();
+
+Java中的Iterator功能比较简单，并且只能单向移动：
+
+(1) 使用方法iterator()要求容器返回一个Iterator。第一次调用Iterator的next()方法时，它返回序列的第一个元素。注意：iterator()方法是java.lang.Iterable接口,被Collection继承。
+
+(2) 使用next()获得序列中的下一个元素。
+
+(3) 使用hasNext()检查序列中是否还有元素。
+
+(4) 使用remove()将迭代器新返回的元素删除。
+
+Iterator是Java迭代器最简单的实现，为List设计的ListIterator具有更多的功能，它可以从两个方向遍历List，也可以从List中插入和删除元素。
+
+
+##Iterator和ListIterator区别
+
+我们在使用List,Set的时候，为了实现对其数据的遍历，我们经常使用到了Iterator(迭代器)。使用迭代器，你不需要干涉其遍历的过程，只需要每次取出一个你想要的数据进行处理就可以了。
+
+但是在使用的时候也是有不同的。List和Set都有iterator()来取得其迭代器。对List来说，你也可以通过listIterator()取得其迭代器，两种迭代器在有些时候是不能通用的，Iterator和ListIterator主要区别在以下方面：
+
+1. ListIterator有add()方法，可以向List中添加对象，而Iterator不能
+
+2. ListIterator和Iterator都有hasNext()和next()方法，可以实现顺序向后遍历，但是ListIterator有hasPrevious()和previous()方法，可以实现逆向（顺序向前）遍历。Iterator就不可以。
+
+3. ListIterator可以定位当前的索引位置，nextIndex()和previousIndex()可以实现。Iterator没有此功能。
+
+4. 都可实现删除对象，但是ListIterator可以实现对象的修改，set()方法可以实现。Iierator仅能遍历，不能修改。
+
+
+
+## 并行和并发有什么区别？
+    并行是指两个或者多个事件在同一时刻发生；而并发是指两个或多个事件在同一时间间隔发生。
+
+并行是在不同实体上的多个事件，并发是在同一实体上的多个事件。
+
+在一台处理器上“同时”处理多个任务，在多台处理器上同时处理多个任务。如hadoop分布式集群。
+    “并行”是指无论从微观还是宏观，二者都是一起执行的，就好像两个人各拿一把铁锨在挖坑，一小时后，每人一个大坑。
+而“并发”在微观上不是同时执行的，只是把时间分成若干段，使多个进程快速交替的执行，从宏观外来看，好像是这些进程都在执行，这就好像两个人用同一把铁锨，轮流挖坑，一小时后，两个人各挖一个小一点的坑，要想挖两个大一点得坑，一定会用两个小时。 
+
+
+## 线程和进程的区别
+1.进程是系统进行资源分配的基本单位，有独立的内存地址空间； 线程是CPU调度的基本单位，没有单独地址空间，有独立的栈，局部变量，寄存器， 程序计数器等。
+2.创建进程的开销大，包括创建虚拟地址空间等需要大量系统资源； 创建线程开销小，基本上只有一个内核对象和一个堆栈。
+3.一个进程无法直接访问另一个进程的资源；同一进程内的多个线程共享进程的资源。
+4.进程切换开销大，线程切换开销小；进程间通信开销大，线程间通信开销小。
+5.线程属于进程，不能独立执行。每个进程至少要有一个线程，成为主线程。
+
+## 守护线程是什么？
+守护线程（即daemon thread），是个服务线程，准确地来说就是服务其他的线程。
+
+##创建线程有哪几种方式？</code></pre><p>①. 继承Thread类创建线程类</p>
+<pre><code>定义Thread类的子类，并重写该类的run方法，该run方法的方法体就代表了线程要完成的任务。因此把run()方法称为执行体。
+
+创建Thread子类的实例，即创建了线程对象。
+
+调用线程对象的start()方法来启动该线程。</code></pre><p>②. 通过Runnable接口创建线程类</p>
+<pre><code>定义runnable接口的实现类，并重写该接口的run()方法，该run()方法的方法体同样是该线程的线程执行体。
+
+创建 Runnable实现类的实例，并依此实例作为Thread的target来创建Thread对象，该Thread对象才是真正的线程对象。
+
+调用线程对象的start()方法来启动该线程。</code></pre><p>③. 通过Callable和Future创建线程</p>
+<pre><code>创建Callable接口的实现类，并实现call()方法，该call()方法将作为线程执行体，并且有返回值。
+
+创建Callable实现类的实例，使用FutureTask类来包装Callable对象，该FutureTask对象封装了该Callable对象的call()方法的返回值。
+
+使用FutureTask对象作为Thread对象的target创建并启动新线程。
+
+调用FutureTask对象的get()方法来获得子线程执行结束后的返回值。
+
+##说一下 runnable 和 callable 有什么区别？</code></pre><p>有点深的问题了，也看出一个Java程序员学习知识的广度。</p>
+<pre><code>Runnable接口中的run()方法的返回值是void，它做的事情只是纯粹地去执行run()方法中的代码而已；
+
+Callable接口中的call()方法是有返回值的，是一个泛型，和Future、FutureTask配合可以用来获取异步执行的结果。
+
+
+##线程有哪些状态？
+
+
+线程通常都有五种状态，创建、就绪、运行、阻塞和死亡。
+
+
+创建状态。在生成线程对象，并没有调用该对象的start方法，这是线程处于创建状态。
+
+就绪状态。当调用了线程对象的start方法之后，该线程就进入了就绪状态，但是此时线程调度程序还没有把该线程设置为当前线程，此时处于就绪状态。在线程运行之后，从等待或者睡眠中回来之后，也会处于就绪状态。
+
+运行状态。线程调度程序将处于就绪状态的线程设置为当前线程，此时线程就进入了运行状态，开始运行run函数当中的代码。
+
+阻塞状态。线程正在运行的时候，被暂停，通常是为了等待某个时间的发生(比如说某项资源就绪)之后再继续运行。sleep,suspend，wait等方法都可以导致线程阻塞。
+
+死亡状态。如果一个线程的run方法执行结束或者调用stop方法后，该线程就会死亡。对于已经死亡的线程，无法再使用start方法令其进入就绪 　　
+
+##sleep() 和 wait() 有什么区别？</code></pre><p>sleep()：方法是线程类（Thread）的静态方法，让调用线程进入睡眠状态，让出执行机会给其他线程，等到休眠时间结束后，线程进入就绪状态和其他线程一起竞争cpu的执行时间。因为sleep() 是static静态的方法，他不能改变对象的机锁，当一个synchronized块中调用了sleep() 方法，线程虽然进入休眠，但是对象的机锁没有被释放，其他线程依然无法访问这个对象。</p>
+<p>wait()：wait()是Object类的方法，当一个线程执行到wait方法时，它就进入到一个和该对象相关的等待池，同时释放对象的机锁，使得其他线程能够访问，可以通过notify，notifyAll方法来唤醒等待的线程</p>
+<p>##notify()和 notifyAll()有什么区别？</p>
+<pre><code>如果线程调用了对象的 wait()方法，那么线程便会处于该对象的等待池中，等待池中的线程不会去竞争该对象的锁。
+
+当有线程调用了对象的 notifyAll()方法（唤醒所有 wait 线程）或 notify()方法（只随机唤醒一个 wait 线程），被唤醒的的线程便会进入该对象的锁池中，锁池中的线程会去竞争该对象锁。也就是说，调用了notify后只要一个线程会由等待池进入锁池，而notifyAll会将该对象等待池内的所有线程移动到锁池中，等待锁竞争。
+
+优先级高的线程竞争到对象锁的概率大，假若某线程没有竞争到该对象锁，它还会留在锁池中，唯有线程再次调用 wait()方法，它才会重新回到等待池中。而竞争到对象锁的线程则继续往下执行，直到执行完了 synchronized 代码块，它会释放掉该对象锁，这时锁池中的线程会继续竞争该对象锁。
+
+##线程的 run()和 start()有什么区别？</code></pre><p>每个线程都是通过某个特定Thread对象所对应的方法run()来完成其操作的，方法run()称为线程体。通过调用Thread类的start()方法来启动一个线程。</p>
+<p>start()方法来启动一个线程，真正实现了多线程运行。这时无需等待run方法体代码执行完毕，可以直接继续执行下面的代码； 这时此线程是处于就绪状态， 并没有运行。 然后通过此Thread类调用方法run()来完成其运行状态， 这里方法run()称为线程体，它包含了要执行的这个线程的内容， Run方法运行结束， 此线程终止。然后CPU再调度其它线程。</p>
+<p>run()方法是在本线程里的，只是线程里的一个函数,而不是多线程的。 如果直接调用run(),其实就相当于是调用了一个普通函数而已，直接待用run()方法必须等待run()方法执行完毕才能执行下面的代码，所以执行路径还是只有一条，根本就没有线程的特征，所以在多线程执行时要使用start()方法而不是run()方法。</p>
+<h2 id="创建线程池有哪几种方式？"><a href="#创建线程池有哪几种方式？" class="headerlink" title="创建线程池有哪几种方式？"></a>创建线程池有哪几种方式？</h2><p>①. newFixedThreadPool(int nThreads)</p>
+<p>创建一个固定长度的线程池，每当提交一个任务就创建一个线程，直到达到线程池的最大数量，这时线程规模将不再变化，当线程发生未预期的错误而结束时，线程池会补充一个新的线程。</p>
+<p>②. newCachedThreadPool()</p>
+<p>创建一个可缓存的线程池，如果线程池的规模超过了处理需求，将自动回收空闲线程，而当需求增加时，则可以自动添加新线程，线程池的规模不存在任何限制。</p>
+<p>③. newSingleThreadExecutor()</p>
+<p>这是一个单线程的Executor，它创建单个工作线程来执行任务，如果这个线程异常结束，会创建一个新的来替代它；它的特点是能确保依照任务在队列中的顺序来串行执行。</p>
+<p>④. newScheduledThreadPool(int corePoolSize)</p>
+<p>创建了一个固定长度的线程池，而且以延迟或定时的方式来执行任务，类似于Timer。</p>
+<ol start="45">
+<li>线程池都有哪些状态？</li>
+</ol>
+<p>线程池有5种状态：Running、ShutDown、Stop、Tidying、Terminated。</p>
+<p>线程池各个状态切换框架图：</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://pokemummaster.github.io/2019/08/24/8-24记录/" data-id="cjzp8w0zv00003w4a8yvb7ezc" class="article-share-link">Share</a>
+      <a data-url="https://pokemummaster.github.io/2019/08/24/8-24记录/" data-id="cjzp8wl0o0001ss4axzo1ogjr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,7 +563,7 @@ String 不属于基础类型，基础类型有 8 种：byte、boolean、char、s
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://pokemummaster.github.io/2019/08/22/我的第一篇博客/" data-id="cjzp8w10300013w4a9cq73ubk" class="article-share-link">Share</a>
+      <a data-url="https://pokemummaster.github.io/2019/08/22/我的第一篇博客/" data-id="cjzp8wkzz0000ss4akyq51wbw" class="article-share-link">Share</a>
       
       
     </footer>
