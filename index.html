@@ -86,7 +86,7 @@ title: 8.24记录
 date: 2019-08-24 12:31:46
 tags:
 ---
-##JDK 和 JRE 有什么区别？
+## JDK 和 JRE 有什么区别？
 
     JDK：Java Development Kit 的简称，java 开发工具包，提供了 java 的开发环境和运行环境。
 
@@ -95,7 +95,7 @@ tags:
     具体来说就是JDK包含JRE  简单来说：如果你需要运行 java 程序，只需安装 JRE 就可以了，如果你需要编写 java 程序，需要安装 JDK。
 
 
-## == 和 equals 的区别是什么？
+##  == 和 equals 的区别是什么？
 
     == 对于基本类型来说是值比较，对于引用类型来说是比较的是引用；而 equals 默认情况下是引用比较，只是很多类重新了 equals 方法，
     比如 String、Integer 等把它变成了值比较，所以一般情况下 equals 比较的是值是否相等。    
@@ -110,7 +110,7 @@ tags:
     与equals方法返回一致，即当equals返回true时，hashcode也要返回true。 ’
 
 
-##final 在 java 中有什么作用？
+## final 在 java 中有什么作用？
 
     final 修饰的类叫最终类，该类不能被继承。
 
@@ -124,14 +124,14 @@ tags:
     其实roud函数就是四舍五入，但是在复数的四舍五入是往大的去的，所以-1.5四舍五入之后是-1，那么答案也就是-1
 
 
-##String 属于基础的数据类型吗？
+## String 属于基础的数据类型吗？
 
     String 不属于基础类型，基础类型有 8 种：byte、boolean、char、short、int、float、long、double，而 String 属于对象。
     所以String在用==时 是比较的引用
 
 
 
-##java 中操作字符串都有哪些类？它们之间有什么区别？
+## java 中操作字符串都有哪些类？它们之间有什么区别？
 
     String 和 StringBuffer、StringBuilder 的区别在于 String 声明的是不可变的对象，每次操作都会生成新的 String 对象，然后将指针指
     向新的 String 对象，而 StringBuffer、StringBuilder 可以在原有对象的基础上进行操作，所以在经常改变字符串内容的情况下最好不要使用 String。
@@ -149,16 +149,16 @@ tags:
 
     如果你写了一个全局范围的StringBuffer和StringBuilder...两个线程不能同时修改StringBuffer中的内容，而能同时修改StringBuilder中的东西
 
-##String str=&quot;i&quot;与 String str=new String(&quot;i&quot;)一样吗？
+## String str=&quot;i&quot;与 String str=new String(&quot;i&quot;)一样吗？
     不一样，因为内存的分配方式不一样。String str=&quot;i&quot;的方式，java 虚拟机会将其分配到常量池中；而 String str=new String(&quot;i&quot;) 则会被分到堆内存中。
 
 
-##如何将字符串反转？
+## 如何将字符串反转？
 
     使用 StringBuilder 或者 stringBuffer 的 reverse() 方法。
     反转=顺序倒过来
 
-##String 类的常用方法都有那些？
+## String 类的常用方法都有那些？
 
 
     indexOf()：返回指定字符的索引。
@@ -185,7 +185,7 @@ tags:
 
 
 
-# 抽象类必须要有抽象方法吗？
+## 抽象类必须要有抽象方法吗？
 
     普通类不能包含抽象方法，抽象类可以包含抽象方法。
     抽象类不能直接实例化，普通类可以直接实例化。
@@ -218,12 +218,12 @@ tags:
     （6）如果抽象类实现接口，则可以把接口中方法映射到抽象类中作为抽象方法而不必实现，而在抽象类的子类中实现接口中方法
 
 
-#抽象类能使用 final 修饰吗？
+## 抽象类能使用 final 修饰吗？
      不能，定义抽象类就是让其他类继承的，如果定义为 final 该类就不能被继承，这样彼此就会产生矛盾，所以 final 不能修饰抽象类
 
 
 
-##接口和抽象类有什么区别？
+## 接口和抽象类有什么区别？
 
     实现：抽象类的子类使用 extends 来继承；接口必须使用 implements 来实现接口。
 
@@ -248,7 +248,7 @@ tags:
     字节流和字符流的区别是：字节流按 8 位传输以字节为单位输入输出数据，字符流按 16 位传输以字符为单位输入输出数据。
 
 
-##BIO、NIO、AIO 有什么区别？
+## BIO、NIO、AIO 有什么区别？
 
         BIO：Block IO 同步阻塞式 IO，就是我们平常使用的传统 IO，它的特点是模式简单使用方便，并发处理能力低。
 
@@ -278,7 +278,7 @@ tags:
 
     输入文件-&gt;流-&gt;程序处理数据-&gt;流-&gt;输出文件。
 
-##Files的常用方法都有哪些？
+## Files的常用方法都有哪些？
 
 
     Files.exists()：检测文件路径是否存在。
@@ -299,7 +299,7 @@ tags:
 
     Files.write()：写入文件。
 
-##java 容器都有哪些？
+## java 容器都有哪些？
 
 
     常用容器的图录：
@@ -314,14 +314,14 @@ tags:
 
 
 
-##List、Set、Map 之间的区别是什么？
+## List、Set、Map 之间的区别是什么？
 
     ![123](‪C:\Users\86180\Desktop\640.jpg)
     List:重复有序
     Set：不重复无序
 
 
-##HashMap 和 Hashtable 有什么区别？
+## HashMap 和 Hashtable 有什么区别？
 
     hashMap去掉了HashTable 的contains方法，但是加上了containsValue（）和containsKey（）方法。
 
@@ -331,12 +331,12 @@ tags:
 
 
 
-##如何决定使用 HashMap 还是 TreeMap？
+## 如何决定使用 HashMap 还是 TreeMap？
 
     对于在Map中插入、删除和定位元素这类操作，HashMap是最好的选择。然而，假如你需要对一个有序的key集合进行遍历，
     TreeMap是更好的选择。基于你的collection的大小，也许向HashMap中添加元素会更快，将map换为TreeMap进行有序key的遍历。
 
-##说一下 HashMap 的实现原理？
+## 说一下 HashMap 的实现原理？
 
 
     HashMap概述： HashMap是基于哈希表的Map接口的非同步实现。此实现提供所有可选的映射操作，并允许使用null值和null键。
@@ -349,7 +349,7 @@ tags:
     需要注意Jdk 1.8中对HashMap的实现做了优化,当链表中的节点数据超过八个之后,该链表会转为红黑树来提高查询效率,从原来的O(n)到O(logn)
 
 
-##说一下 HashSet 的实现原理？
+## 说一下 HashSet 的实现原理？
 
 
     HashSet底层由HashMap实现
@@ -359,7 +359,7 @@ tags:
     HashMap的value统一为PRESENT
 
 
-##ArrayList 和 LinkedList 的区别是什么？
+## ArrayList 和 LinkedList 的区别是什么？
 
     最明显的区别是 ArrrayList底层的数据结构是数组，支持随机访问，而 LinkedList 的底层数据结构是双向循环链表，不
     支持随机访问。使用下标访问一个元素，ArrayList 的时间复杂度是 O(1)，而 LinkedList 是 O(n)。
@@ -367,13 +367,13 @@ tags:
     LinkedList:结构与数组不同，是圈圈型的链表
 
 
-##如何实现数组和 List 之间的转换？
+## 如何实现数组和 List 之间的转换？
 
     List转换成为数组：调用ArrayList的toArray方法。
 
     数组转换成为List：调用Arrays的asList方法。
 
-##. ArrayList 和 Vector 的区别是什么？
+##  ArrayList 和 Vector 的区别是什么？
 
     Vector是同步的，而ArrayList不是。然而，如果你寻求在迭代的时候对列表进行改变，你应该使用CopyOnWriteArrayList。 
 
@@ -391,12 +391,12 @@ tags:
     Array没有提供ArrayList那么多功能，比如addAll、removeAll和iterator等。
 
 
-##在 Queue 中 poll()和 remove()有什么区别？
+## 在 Queue 中 poll()和 remove()有什么区别？
 
     poll() 和 remove() 都是从队列中取出一个元素，但是 poll() 在获取元素失败的时候会返回空，但是 remove() 失败的时候会抛出异常。
 
 
-##哪些集合类是线程安全的？
+## 哪些集合类是线程安全的？
 
     vector：就比arraylist多了个同步化机制（线程安全），因为效率较低，现在已经不太建议使用。在web应用中，特别是前台页面，往往效率（页面响应速度）是优先考虑的。
 
@@ -407,7 +407,7 @@ tags:
     enumeration：枚举，相当于迭代器。
 
 
-##迭代器 Iterator 是什么？
+## 迭代器 Iterator 是什么？
 
     迭代器是一种设计模式，它是一个对象，它可以遍历并选择序列中的对象，而开发人员不需要了解该序列的底层结构。迭代器通常被称为“轻量级”对象，因为创建它的代价小。
 
@@ -431,7 +431,7 @@ tags:
     Iterator是Java迭代器最简单的实现，为List设计的ListIterator具有更多的功能，它可以从两个方向遍历List，也可以从List中插入和删除元素。
 
 
-##Iterator和ListIterator区别
+## Iterator和ListIterator区别
 
     我们在使用List,Set的时候，为了实现对其数据的遍历，我们经常使用到了Iterator(迭代器)。使用迭代器，你不需要干涉其遍历的过程，
     只需要每次取出一个你想要的数据进行处理就可以了。
@@ -471,7 +471,7 @@ tags:
 ## 守护线程是什么？
     守护线程（即daemon thread），是个服务线程，准确地来说就是服务其他的线程。
 
-##创建线程有哪几种方式？
+## 创建线程有哪几种方式？
 
 
 ①. 继承Thread类创建线程类
@@ -503,7 +503,7 @@ tags:
 
     调用FutureTask对象的get()方法来获得子线程执行结束后的返回值。
 
-    ##说一下 runnable 和 callable 有什么区别？
+##  说一下 runnable 和 callable 有什么区别？
 
 
     Runnable接口中的run()方法的返回值是void，它做的事情只是纯粹地去执行run()方法中的代码而已；
@@ -511,7 +511,7 @@ tags:
     Callable接口中的call()方法是有返回值的，是一个泛型，和Future、FutureTask配合可以用来获取异步执行的结果。
 
 
-    ##线程有哪些状态？
+##  线程有哪些状态？
 
 
     线程通常都有五种状态，创建、就绪、运行、阻塞和死亡。
@@ -528,7 +528,7 @@ tags:
 
     死亡状态。如果一个线程的run方法执行结束或者调用stop方法后，该线程就会死亡。对于已经死亡的线程，无法再使用start方法令其进入就绪 　　
 
-    ##sleep() 和 wait() 有什么区别？
+##  sleep() 和 wait() 有什么区别？
 
 
     sleep()：方法是线程类（Thread）的静态方法，让调用线程进入睡眠状态，让出执行机会给其他线程，等到休眠时间结束后，
@@ -540,7 +540,7 @@ tags:
     使得其他线程能够访问，可以通过notify，notifyAll方法来唤醒等待的线程
 
 
-##notify()和 notifyAll()有什么区别？
+##  notify()和 notifyAll()有什么区别？
 
 
     如果线程调用了对象的 wait()方法，那么线程便会处于该对象的等待池中，等待池中的线程不会去竞争该对象的锁。
@@ -550,9 +550,10 @@ tags:
     该对象等待池内的所有线程移动到锁池中，等待锁竞争。
 
     优先级高的线程竞争到对象锁的概率大，假若某线程没有竞争到该对象锁，它还会留在锁池中，唯有线程再次调用 wait()方法，
-    它才会重新回到等待池中。而竞争到对象锁的线程则继续往下执行，直到执行完了 synchronized 代码块，它会释放掉该对象锁，这时锁池中的线程会继续竞争该对象锁。
+    它才会重新回到等待池中。而竞争到对象锁的线程则继续往下执行，直到执行完了 synchronized 代码块，
+    它会释放掉该对象锁，这时锁池中的线程会继续竞争该对象锁。
 
-##线程的 run()和 start()有什么区别？
+##  线程的 run()和 start()有什么区别？
 
 
     每个线程都是通过某个特定Thread对象所对应的方法run()来完成其操作的，方法run()称为线程体。通过调用Thread类的start()方法来启动一个线程。
@@ -573,20 +574,23 @@ tags:
     ①. newFixedThreadPool(int nThreads)
 
 
-    创建一个固定长度的线程池，每当提交一个任务就创建一个线程，直到达到线程池的最大数量，这时线程规模将不再变化，
-    当线程发生未预期的错误而结束时，线程池会补充一个新的线程。
+    创建一个固定长度的线程池，每当提交一个任务就创建一个线程，直到达到线程池的最大数量，
+    这时线程规模将不再变化，当线程发生未预期的错误而结束时，线程池会补充一个新的线程。
 
 
     ②. newCachedThreadPool()
 
 
-    创建一个可缓存的线程池，如果线程池的规模超过了处理需求，将自动回收空闲线程，而当需求增加时，则可以自动添加新线程，线程池的规模不存在任何限制。
+    创建一个可缓存的线程池，如果线程池的规模超过了处理需求，将自动回收空闲线程，而当需求增加时，
+    则可以自动添加新线程，线程池的规模不存在任何限制。
 
 
     ③. newSingleThreadExecutor()
 
 
-    这是一个单线程的Executor，它创建单个工作线程来执行任务，如果这个线程异常结束，会创建一个新的来替代它；它的特点是能确保依照任务在队列中的顺序来串行执行。
+
+    这是一个单线程的Executor，它创建单个工作线程来执行任务，如果这个线程异常结束，会创建一个新的
+    来替代它；它的特点是能确保依照任务在队列中的顺序来串行执行。
 
 
     ④. newScheduledThreadPool(int corePoolSize)
@@ -595,14 +599,14 @@ tags:
     创建了一个固定长度的线程池，而且以延迟或定时的方式来执行任务，类似于Timer。
 
 
-##线程池都有哪些状态？
+##  线程池都有哪些状态？
 
 
     线程池有5种状态：Running、ShutDown、Stop、Tidying、Terminated。
 
     线程池各个状态切换框架图：
 
-##线程池中 submit()和 execute()方法有什么区别？
+##  线程池中 submit()和 execute()方法有什么区别？
 
 
     接收的参数不一样
@@ -611,7 +615,7 @@ tags:
 
     submit方便Exception处理
 
-##在 java 程序中怎么保证多线程的运行安全？
+##  在 java 程序中怎么保证多线程的运行安全？
 
 
     线程安全在三个方面体现：
@@ -621,11 +625,85 @@ tags:
 
     可见性：一个线程对主内存的修改可以及时地被其他线程看到，（synchronized,volatile）；
 
-    有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序，该观察结果一般杂乱无序，（happens-before原则）。    </code></pre>
+    有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序，该观察结果一般杂乱无序，（happens-before原则）。    
+
+##  什么是死锁？
+
+
+    死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，
+    若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。
+    是操作系统层面的一个错误，是进程死锁的简称，最早在 1965 年由 Dijkstra 在研究银行家算法时提出的，
+    它是计算机操作系统乃至整个并发程序设计领域最难处理的问题之一。
+
+##  怎么防止死锁？
+
+    死锁的四个必要条件：
+
+    互斥条件：进程对所分配到的资源不允许其他进程进行访问，若其他进程访问该资源，只能等待，直至
+    占有该资源的进程使用完成后释放该资源
+
+    请求和保持条件：进程获得一定的资源之后，又对其他资源发出请求，但是该资源可能被其他进程占有，
+    此事请求阻塞，但又对自己获得的资源保持不放
+
+    不可剥夺条件：是指进程已获得的资源，在未完成使用之前，不可被剥夺，只能在使用完后自己释放
+
+    环路等待条件：是指进程发生死锁后，若干进程之间形成一种头尾相接的循环等待资源关系
+
+## ThreadLocal 是什么？有哪些使用场景？
+
+
+    线程局部变量是局限于线程内部的变量，属于线程自身所有，不在多个线程间共享。Java提供ThreadLocal类来支持线程局部变量，
+    是一种实现线程安全的方式。但是在管理环境下（如 web 服务器）使用线程局部变量的时候要特别小心，
+    在这种情况下，工作线程的生命周期比任何应用变量的生命周期都要长。任何线程局部变量一旦在工作完成后没有释放，
+    Java 应用就存在内存泄露的风险。
+
+##  synchronized 和 volatile 的区别是什么？
+
+    volatile本质是在告诉jvm当前变量在寄存器（工作内存）中的值是不确定的，需要从主存中读取； synchronized则是锁定当前变量，只有当前线程可以访问该变量，其他线程被阻塞住。
+
+    volatile仅能使用在变量级别；synchronized则可以使用在变量、方法、和类级别的。
+
+    volatile仅能实现变量的修改可见性，不能保证原子性；而synchronized则可以保证变量的修改可见性和原子性。
+
+    volatile不会造成线程的阻塞；synchronized可能会造成线程的阻塞。
+
+    volatile标记的变量不会被编译器优化；synchronized标记的变量可以被编译器优化。
+
+
+##  synchronized 和 Lock 有什么区别？
+
+
+    首先synchronized是java内置关键字，在jvm层面，Lock是个java类；
+
+    synchronized无法判断是否获取锁的状态，Lock可以判断是否获取到锁；
+
+    synchronized会自动释放锁(a 线程执行完同步代码会释放锁 ；b 线程执行过程中发生异常会释放锁)，Lock需在finally中手工释放锁（unlock()方法释放锁），否则容易造成线程死锁；
+
+    用synchronized关键字的两个线程1和线程2，如果当前线程1获得锁，线程2线程等待。如果线程1阻塞，线程2则会一
+    直等待下去，而Lock锁就不一定会等待下去，如果尝试获取不到锁，线程可以不用一直等待就结束了；
+
+    synchronized的锁可重入、不可中断、非公平，而Lock锁可重入、可判断、可公平（两者皆可）；
+
+    Lock锁适合大量同步的代码的同步问题，synchronized锁适合代码少量的同步问题。
+
+##  synchronized 和 ReentrantLock 区别是什么？
+
+    synchronized是和if、else、for、while一样的关键字，ReentrantLock是类，这是二者的本质区别。既然ReentrantLoc
+    k是类，那么它就提供了比synchronized更多更灵活的特性，可以被继承、
+    可以有方法、可以有各种各样的类变量，ReentrantLock比synchronized的扩展性体现在几点上： 
+    ReentrantLock可以对获取锁的等待时间进行设置，这样就避免了死锁 
+    ReentrantLock可以获取各种锁的信息
+    ReentrantLock可以灵活地实现多路通知 
+
+    另外，二者的锁机制其实也是不一样的:ReentrantLock底层调用的是Unsafe的park方法加锁，synchronized操作的应该是对象头中mark word。
+
+## 说一下 atomic 的原理？</code></pre><p>Atomic包中的类基本的特性就是在多线程环境下，当有多个线程同时对单个（包括基本类型及引用类型）变量进行操作时，具有排他性，<br>即当多个线程同时对该变量的值进行更新时，仅有一个线程能成功，而未成功的线程可以向自旋锁一样，继续尝试，一直等到执行成功。</p>
+<p>Atomic系列的类中的核心方法都会调用unsafe类中的几个本地方法。我们需要先知道一个东西就是Unsafe类，全名为：sun.misc.Unsafe，这个类包含了大量的对C代码的操作，包括很多直接内存分配以及原子操作的调用，而它之所以标记为非安全的，是告诉你这个里面大量的方法调用都会存在安全隐患，需要小心使用，否则会导致严重的后果，例如在通过unsafe分配内存的时候，如果自己指定某些区域可能会导致一些类似C++一样的指针越界到其他进程的问题</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://pokemummaster.github.io/2019/08/24/8-24记录/" data-id="cjzp9htwp0001304ag7socmeh" class="article-share-link">Share</a>
+      <a data-url="https://pokemummaster.github.io/2019/08/24/8-24记录/" data-id="cjzp9yur600014c4aowtn368c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -662,7 +740,7 @@ tags:
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://pokemummaster.github.io/2019/08/22/我的第一篇博客/" data-id="cjzp9htvu0000304a4lru63j8" class="article-share-link">Share</a>
+      <a data-url="https://pokemummaster.github.io/2019/08/22/我的第一篇博客/" data-id="cjzp9yuqt00004c4ay7okegnm" class="article-share-link">Share</a>
       
       
     </footer>
